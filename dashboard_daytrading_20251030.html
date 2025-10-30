@@ -1,0 +1,988 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>テクニカル分析ダッシュボード - DAYTRADING</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .header h1 { color: #333; margin-bottom: 10px; }
+        .header .meta { color: #666; font-size: 14px; }
+        .chart-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        .chart-header h2 { color: #333; font-size: 24px; }
+        .stock-info { text-align: right; }
+        .stock-info .price {
+            display: block;
+            font-size: 28px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .stock-info .date {
+            display: block;
+            font-size: 14px;
+            color: #999;
+            margin-top: 5px;
+        }
+        .signals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .signal-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .signal-box h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .signal {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .signal.green { color: #10b981; }
+        .signal.red { color: #ef4444; }
+        .signal.gray { color: #6b7280; }
+        .description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .signal-box ul {
+            list-style: none;
+            font-size: 14px;
+            color: #666;
+        }
+        .signal-box ul li { padding: 4px 0; }
+        .strategy {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+        .chart-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .footer {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 テクニカル分析ダッシュボード - DAYTRADING</h1>
+        <div class="meta">
+            生成日時: 2025年10月30日 10:06:28 |
+            分析期間: 過去90日 |
+            銘柄数: 20
+        </div>
+    </div>
+
+    
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>6330 - 東洋エンジニアリング</h2>
+                <div class="stock-info">
+                    <span class="price">¥2,545</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（雲上 + 好転）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 9.74%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: BULLISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">押し目買い（好材料）</p>
+                    <p>ファンダスコア: <strong>60</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_6330_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>7711 - 助川電気工業</h2>
+                <div class="stock-info">
+                    <span class="price">¥8,800</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（雲上 + 好転）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 6.59%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: BULLISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">レンジ・スキャルピング</p>
+                    <p>ファンダスコア: <strong>0</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_7711_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>7014 - 名村造船所</h2>
+                <div class="stock-info">
+                    <span class="price">¥5,050</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（雲上 + 好転）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 0.18%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: BULLISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">押し目買い（好材料）</p>
+                    <p>ファンダスコア: <strong>60</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_7014_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>6814 - 古野電気</h2>
+                <div class="stock-info">
+                    <span class="price">¥9,350</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（雲上 + 好転）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 7.21%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: BULLISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">押し目買い（好材料）</p>
+                    <p>ファンダスコア: <strong>50</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_6814_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>7003 - 三井Ｅ＆Ｓ</h2>
+                <div class="stock-info">
+                    <span class="price">¥5,620</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（雲上 + 好転）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 10.03%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: BULLISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">押し目買い（好材料）</p>
+                    <p>ファンダスコア: <strong>60</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_7003_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>3350 - メタプラネット</h2>
+                <div class="stock-info">
+                    <span class="price">¥469</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal red">SELL (STRONG_BEARISH)</p>
+                    <p class="description">弱気トレンド（雲下 + 逆転）</p>
+                    <ul>
+                        <li>雲: BELOW</li>
+                        <li>クロス: DEAD</li>
+                        <li>雲の厚さ: 67.59%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal red">SELL (STRONG_BEARISH)</p>
+                    <p class="description">弱気トレンド（逆パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: DEAD</li>
+                        <li>PO: BEARISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">レンジ・スキャルピング</p>
+                    <p>ファンダスコア: <strong>30</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_3350_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>5016 - ＪＸ金属</h2>
+                <div class="stock-info">
+                    <span class="price">¥1,951</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（雲上 + 好転）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 9.89%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal gray">HOLD (NEUTRAL)</p>
+                    <p class="description">レンジ相場</p>
+                    <ul>
+                        <li>クロス: DEAD</li>
+                        <li>PO: NONE</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">レンジ・スキャルピング</p>
+                    <p>ファンダスコア: <strong>15</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_5016_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>4592 - サンバイオ</h2>
+                <div class="stock-info">
+                    <span class="price">¥2,678</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（雲上 + 好転）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 0.63%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal red">SELL (BEARISH)</p>
+                    <p class="description">下降トレンド（デッドクロス: 5/25日線）</p>
+                    <ul>
+                        <li>クロス: DEAD</li>
+                        <li>PO: NONE</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">レンジ・スキャルピング</p>
+                    <p>ファンダスコア: <strong>-5</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_4592_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>7013 - ＩＨＩ</h2>
+                <div class="stock-info">
+                    <span class="price">¥3,105</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（雲上 + 好転）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 1.69%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: BULLISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">押し目買い（好材料）</p>
+                    <p>ファンダスコア: <strong>50</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_7013_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>6525 - ＫＯＫＵＳＡＩ　ＥＬＥＣＴＲＩＣ</h2>
+                <div class="stock-info">
+                    <span class="price">¥4,877</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（雲上 + 好転）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 0.00%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: BULLISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">押し目買い（好材料）</p>
+                    <p>ファンダスコア: <strong>50</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_6525_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>6506 - 安川電機</h2>
+                <div class="stock-info">
+                    <span class="price">¥4,548</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（雲上 + 好転）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 3.36%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: BULLISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">押し目買い（好材料）</p>
+                    <p>ファンダスコア: <strong>50</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_6506_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>5801 - 古河電気工業</h2>
+                <div class="stock-info">
+                    <span class="price">¥9,626</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (BULLISH)</p>
+                    <p class="description">上昇トレンド（雲上）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: DEAD</li>
+                        <li>雲の厚さ: 4.78%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: BULLISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">押し目買い（好材料）</p>
+                    <p>ファンダスコア: <strong>50</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_5801_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>3498 - 霞ヶ関キャピタル</h2>
+                <div class="stock-info">
+                    <span class="price">¥9,890</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (BULLISH)</p>
+                    <p class="description">上昇トレンド（雲上）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: DEAD</li>
+                        <li>雲の厚さ: 5.56%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: BULLISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">押し目買い（好材料）</p>
+                    <p>ファンダスコア: <strong>50</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_3498_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>7011 - 三菱重工業</h2>
+                <div class="stock-info">
+                    <span class="price">¥4,426</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（雲上 + 好転）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 2.11%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: BULLISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">押し目買い（好材料）</p>
+                    <p>ファンダスコア: <strong>50</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_7011_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>8267 - イオン</h2>
+                <div class="stock-info">
+                    <span class="price">¥2,351</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（雲上 + 好転）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 5.58%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: BULLISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">押し目買い（好材料）</p>
+                    <p>ファンダスコア: <strong>50</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_8267_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>6762 - ＴＤＫ</h2>
+                <div class="stock-info">
+                    <span class="price">¥2,528</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（雲上 + 好転）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 5.77%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: BULLISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">押し目買い（好材料）</p>
+                    <p>ファンダスコア: <strong>50</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_6762_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>3436 - ＳＵＭＣＯ</h2>
+                <div class="stock-info">
+                    <span class="price">¥1,704</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（雲上 + 好転）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 3.18%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: BULLISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">レンジ・スキャルピング</p>
+                    <p>ファンダスコア: <strong>30</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_3436_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>6315 - ＴＯＷＡ</h2>
+                <div class="stock-info">
+                    <span class="price">¥2,082</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (BULLISH)</p>
+                    <p class="description">上昇トレンド（雲上）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: DEAD</li>
+                        <li>雲の厚さ: 0.28%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal gray">HOLD (NEUTRAL)</p>
+                    <p class="description">レンジ相場</p>
+                    <ul>
+                        <li>クロス: DEAD</li>
+                        <li>PO: NONE</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">レンジ・スキャルピング</p>
+                    <p>ファンダスコア: <strong>30</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_6315_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>5838 - 楽天銀行</h2>
+                <div class="stock-info">
+                    <span class="price">¥8,126</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（雲上 + 好転）</p>
+                    <ul>
+                        <li>雲: ABOVE</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 5.83%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal green">BUY (STRONG_BULLISH)</p>
+                    <p class="description">強気トレンド（パーフェクトオーダー: [5, 25, 75]日線）</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: BULLISH</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">レンジ・スキャルピング</p>
+                    <p>ファンダスコア: <strong>30</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_5838_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>7453 - 良品計画</h2>
+                <div class="stock-info">
+                    <span class="price">¥3,096</span>
+                    <span class="date">2025-10-24</span>
+                </div>
+            </div>
+
+            <div class="signals">
+                <div class="signal-box">
+                    <h3>一目均衡表</h3>
+                    <p class="signal red">SELL (BEARISH)</p>
+                    <p class="description">下降トレンド（雲下）</p>
+                    <ul>
+                        <li>雲: BELOW</li>
+                        <li>クロス: GOLDEN</li>
+                        <li>雲の厚さ: 4.19%</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>移動平均線</h3>
+                    <p class="signal gray">HOLD (NEUTRAL)</p>
+                    <p class="description">レンジ相場</p>
+                    <ul>
+                        <li>クロス: GOLDEN</li>
+                        <li>PO: NONE</li>
+                    </ul>
+                </div>
+
+                <div class="signal-box">
+                    <h3>取引戦略</h3>
+                    <p class="strategy">レンジ・スキャルピング</p>
+                    <p>ファンダスコア: <strong>15</strong></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <iframe src="chart_7453_20251030.html" width="100%" height="800" frameborder="0"></iframe>
+            </div>
+        </div>
+        
+
+    <div class="footer">
+        <p>自動生成されたテクニカル分析ダッシュボードです。投資判断は自己責任で行ってください。</p>
+        <p>一目均衡表、移動平均線、出来高を統合した分析を提供しています。</p>
+    </div>
+</body>
+</html>
+        
